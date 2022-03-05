@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
+// -ka don't need this anymore
+// import { createUser } from '../utils/API';
 
-import { createUser } from '../utils/API';
+// +ka useMutation from apollo client
+import { useMutation } from '@apollo/client';
+// +ka ADD_USER from apollo client
+import { ADD_USER } from '../utils/mutations';
+
 import Auth from '../utils/auth';
 
 const SignupForm = () => {
@@ -11,6 +17,13 @@ const SignupForm = () => {
   const [validated] = useState(false);
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
+  // +ka define mutation for adding a user
+  const [createUser, {error}] = useMutation(ADD_USER);
+  useEffect (() => {
+    if(error) {
+      console.log(error)
+    }
+  }, [error] )
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -26,21 +39,36 @@ const SignupForm = () => {
       event.preventDefault();
       event.stopPropagation();
     }
+    // -ka existing try ... catch
+    // try {
+    //   const response = await createUser(userFormData);
 
+    //   if (!response.ok) {
+    //     throw new Error('something went wrong!');
+    //   }
+
+    //   const { token, user } = await response.json();
+    //   console.log(user);
+    //   Auth.login(token);
+    // } catch (err) {
+    //   console.error(err);
+    //   setShowAlert(true);
+    // }
+
+    // + ka newtry ... catch
     try {
-      const response = await createUser(userFormData);
+      const { data } = await createUser({
+        variables: { ...userFormData }
+      });
+      
 
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
-
-      const { token, user } = await response.json();
-      console.log(user);
-      Auth.login(token);
+      Auth.login(data.addUser.token)
+      console.log(data);
     } catch (err) {
-      console.error(err);
+      console.error(err)
       setShowAlert(true);
     }
+
 
     setUserFormData({
       username: '',
