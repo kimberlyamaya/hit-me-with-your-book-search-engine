@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 // -ka import { createUser } from '../utils/API';
 
@@ -18,11 +18,12 @@ const SignupForm = () => {
   const [showAlert, setShowAlert] = useState(false);
   // +ka define mutation for adding a user
   const [createUser, {error}] = useMutation(ADD_USER);
-  useEffect (() => {
-    if(error) {
-      console.log(error)
-    }
-  }, [error] )
+
+  // useEffect (() => {
+  //   if(error) {
+  //     console.log(error)
+  //   }
+  // }, [error] )
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
