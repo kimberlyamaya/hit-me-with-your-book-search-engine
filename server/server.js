@@ -15,33 +15,32 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // +ka create new apollo server
-  // const server = new ApolloServer({
-  //   typeDefs,
-  //   resolvers,
-  //   context: authMiddleware
-  // })
-
-  // server.applyMiddleware( {app} )
-
-// +ka create new apollo server 2.0
-
-const startServer = async () => {
-
-  const server = new ApolloServer ({
+  const server = new ApolloServer({
     typeDefs,
     resolvers,
     context: authMiddleware
   })
 
-  await server.start()
+  server.applyMiddleware( {app} )
 
-  server.applyMiddleware({ app })
+// +ka create new apollo server 2.0
+// const startServer = async () => {
 
-  // +ka moved this down
-  console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`)
-}
+//   const server = new ApolloServer ({
+//     typeDefs,
+//     resolvers,
+//     context: authMiddleware
+//   })
 
-startServer()
+//   await server.start()
+
+//   server.applyMiddleware({ app })
+
+//   // +ka moved this down
+//   console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`)
+// }
+
+// startServer()
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
