@@ -36,6 +36,9 @@ const startServer = async () => {
   await server.start()
 
   server.applyMiddleware({ app })
+
+  // +ka moved this down
+  console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`)
 }
 
 startServer()
@@ -52,7 +55,5 @@ app.use(routes);
 
 db.once('open', () => {
   app.listen(PORT, () => console.log(`🌍 Now listening on localhost:${PORT}`))
-  // +ka moved this down
-  console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`)
   ;
 });
