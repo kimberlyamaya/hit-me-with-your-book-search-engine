@@ -41,7 +41,7 @@ const resolvers = {
     
                 return { token, user }
             },
-    
+
             login: async (parent, { email, password }) => {
                 const user = await User.findOne({ email })
     
@@ -58,7 +58,8 @@ const resolvers = {
                   const token = signToken(user);
                   return { token, user };
             },
-            saveBook: async (parent, args, context) => {
+             saveBook: async (parent, args, context) => {
+                console.log(context.user)
                 if (context.user) {
               
                   const updatedUser =  await User.findByIdAndUpdate(
