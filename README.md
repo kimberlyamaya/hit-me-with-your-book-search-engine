@@ -48,7 +48,7 @@
   12. To see your saved books list, go to top of the screen and press 'See Your Books'
   ![see_your_books](./client/public/assets/see_your_books.JPG)
 
-  13. Scroll down too see saved books
+  13. Scroll down to see saved books
   ![view_saved_books](./client/public/assets/view_saved_books.JPG)
 
   14. Press 'Delete this book' if you wish to remove a book from your list
