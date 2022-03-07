@@ -24,7 +24,7 @@
   4. Once satisfied return to bash and disconnect by typing ctrl + c on your keyboard
 
   ### on Heroku
-  1. Follow this link to the application: https://ADDLIVELINK.com
+  1. Follow this link to the application: https://evening-plains-05402.herokuapp.com/
   2. In the upper right corner press Login/Sign up
   ![home_page](./client/public/assets/home_page.JPG)
 
