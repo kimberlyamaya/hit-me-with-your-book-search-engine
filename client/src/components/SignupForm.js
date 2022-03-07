@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
-// -ka don't need this anymore
-// import { createUser } from '../utils/API';
+// -ka import { createUser } from '../utils/API';
 
 // +ka useMutation from apollo client
 import { useMutation } from '@apollo/client';
@@ -39,23 +38,8 @@ const SignupForm = () => {
       event.preventDefault();
       event.stopPropagation();
     }
-    // -ka existing try ... catch
-    // try {
-    //   const response = await createUser(userFormData);
 
-    //   if (!response.ok) {
-    //     throw new Error('something went wrong!');
-    //   }
-
-    //   const { token, user } = await response.json();
-    //   console.log(user);
-    //   Auth.login(token);
-    // } catch (err) {
-    //   console.error(err);
-    //   setShowAlert(true);
-    // }
-
-    // + ka newtry ... catch
+    // + ka new try ... catch
     try {
       const { data } = await createUser({
         variables: { ...userFormData }
